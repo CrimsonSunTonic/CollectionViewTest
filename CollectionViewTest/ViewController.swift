@@ -28,13 +28,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        let tappedImageName = ImageCollectionViewCell().b_komachi[indexPath.item]
-        // Initialize and present MemberInfoViewController
-        let memberInfoVC = MemberInfoViewController()
-        memberInfoVC.memberName = tappedImageName
-        present(memberInfoVC, animated: true, completion:nil)
+        let memberKeys = ["chara_kana", "chara_ruby", "chara_memcho"]
+        let selectedKey = memberKeys[indexPath.item]
+        
+        let memberVC = MemberInfoViewController()
+        memberVC.memberKey = selectedKey
+        navigationController?.pushViewController(memberVC, animated: true)
     }
+
 }
 
 extension ViewController: UICollectionViewDataSource {
